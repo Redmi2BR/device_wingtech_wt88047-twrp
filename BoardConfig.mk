@@ -70,3 +70,7 @@ TARGET_KEYMASTER_WAIT_FOR_QSEE := true
 TW_THEME := portrait_hdpi
 TW_EXCLUDE_SUPERSU := true
 TW_INPUT_BLACKLIST := "hbtp_vm"
+
+# Init properties
+TARGET_INIT_VENDOR_LIB := libinit_wt88047
+TARGET_RECOVERY_DEVICE_MODULES := libinit_wt88047
