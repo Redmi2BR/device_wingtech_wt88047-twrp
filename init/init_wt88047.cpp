@@ -58,10 +58,6 @@ void vendor_load_properties()
     std::ifstream fin;
     std::string buf;
 
-    std::string product = property_get("ro.product.name");
-    if (product.find("wt88047") == std::string::npos)
-        return;
-
     fin.open("/proc/cmdline");
     while (std::getline(fin, buf, ' '))
         if (buf.find("board_id") != std::string::npos)
