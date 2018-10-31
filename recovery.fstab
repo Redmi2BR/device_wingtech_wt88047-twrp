@@ -1,24 +1,26 @@
-# firmware
-/tz              emmc              /dev/block/bootdevice/by-name/tz         flags=backup=1;subpartitionof=/firmware
-/hyp             emmc              /dev/block/bootdevice/by-name/hyp        flags=backup=1;subpartitionof=/firmware
-/sbl1            emmc              /dev/block/bootdevice/by-name/sbl1       flags=backup=1;subpartitionof=/firmware
-/rpm             emmc              /dev/block/bootdevice/by-name/rpm        flags=backup=1;subpartitionof=/firmware
-/aboot           emmc              /dev/block/bootdevice/by-name/aboot      flags=backup=1;subpartitionof=/firmware
-/splash          emmc              /dev/block/bootdevice/by-name/splash     flags=backup=1;subpartitionof=/firmware
-/firmware        vfat              /dev/block/bootdevice/by-name/modem      flags=mounttodecrypt;fsflags=ro;display="Firmware"
+# twrp fstab
+/system_image    emmc      /dev/block/bootdevice/by-name/system
+/system          ext4      /dev/block/bootdevice/by-name/system
 
-# efs
-/modem_st1       emmc              /dev/block/bootdevice/by-name/modemst1   flags=backup=1;display=EFS
-/modem_st2       emmc              /dev/block/bootdevice/by-name/modemst2   flags=backup=1;subpartitionof=/modem_st1
+/data            ext4      /dev/block/bootdevice/by-name/userdata    flags=encryptable=footer;length=-16384;fsflags="noatime,nosuid,nodev,barrier=1,noauto_da_alloc"
+/cache           ext4      /dev/block/bootdevice/by-name/cache       flags=fsflags="noatime,nosuid,nodev,barrier=1,noauto_da_alloc"
+/persist         ext4      /dev/block/bootdevice/by-name/persist     flags=backup=1;display="Persist";fsflags="noatime,nosuid,nodev,barrier=1,noauto_da_alloc"
 
-/system          ext4              /dev/block/bootdevice/by-name/system
-/system_image    emmc              /dev/block/bootdevice/by-name/system
-/data            ext4              /dev/block/bootdevice/by-name/userdata   flags=encryptable=footer;length=-16384
-/cache           ext4              /dev/block/bootdevice/by-name/cache
-/persist         ext4              /dev/block/bootdevice/by-name/persist    flags=backup=1;display="Persist"
-/boot            emmc              /dev/block/bootdevice/by-name/boot
-/recovery        emmc              /dev/block/bootdevice/by-name/recovery   flags=backup=1
-/misc            emmc              /dev/block/bootdevice/by-name/misc
+/boot            emmc      /dev/block/bootdevice/by-name/boot
+/recovery        emmc      /dev/block/bootdevice/by-name/recovery    flags=backup=1
 
-/external_sd     vfat              /dev/block/mmcblk1p1 /dev/block/mmcblk1  flags=removable;storage;wipeingui;display="Micro SDCard"
-/usb_otg         auto              /dev/block/sda1 /dev/block/sda           flags=removable;storage;wipeingui;display="USB OTG"
+###
+/splash          emmc      /dev/block/bootdevice/by-name/splash      flags=backup=1;display="Logo"
+
+/oem             ext4      /dev/block/bootdevice/by-name/oem         flags=backup=1;wipeingui;fsflags="noatime,nosuid,nodev,barrier=1,noauto_da_alloc"
+
+/modem_st1       emmc      /dev/block/bootdevice/by-name/modemst1    flags=backup=1;display="EFS"
+/modem_st2       emmc      /dev/block/bootdevice/by-name/modemst2    flags=backup=1;subpartitionof=/modem_st1
+
+/firmware        vfat      /dev/block/bootdevice/by-name/modem       flags=mounttodecrypt;fsflags=ro;display="Firmware"
+
+/misc            emmc      /dev/block/bootdevice/by-name/misc
+
+/external_sd     vfat      /dev/block/mmcblk1p1 /dev/block/mmcblk1   flags=removable;storage;wipeingui;display="Micro SDCard"
+/usb_otg         auto      /dev/block/sda1 /dev/block/sda            flags=removable;storage;wipeingui;display="USB OTG"
+
